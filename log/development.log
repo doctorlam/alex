@@ -1,0 +1,465 @@
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:16:50 -0500
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.1) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.1) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateRecipes (20180923232954)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180923232954_create_recipes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180923232954"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateIngredients (20180924004724)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ingredients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "recipe_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_3ee351e1cd"
+FOREIGN KEY ("recipe_id")
+  REFERENCES "recipes" ("id")
+)[0m
+  ↳ db/migrate/20180924004724_create_ingredients.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_ingredients_on_recipe_id" ON "ingredients" ("recipe_id")[0m
+  ↳ db/migrate/20180924004724_create_ingredients.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180924004724"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateSteps (20180924004844)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "steps" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "direction" text, "recipe_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_2619d9e771"
+FOREIGN KEY ("recipe_id")
+  REFERENCES "recipes" ("id")
+)[0m
+  ↳ db/migrate/20180924004844_create_steps.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_steps_on_recipe_id" ON "steps" ("recipe_id")[0m
+  ↳ db/migrate/20180924004844_create_steps.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180924004844"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to AddImageToRecipe (20181001170258)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "recipes" ADD "image" varchar[0m
+  ↳ db/migrate/20181001170258_add_image_to_recipe.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181001170258"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-10-04 17:16:58.206945"], ["updated_at", "2018-10-04 17:16:58.206945"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/rake-12.3.1/lib/rake/task.rb:271
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:17:00 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 3227ms (Views: 3208.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-04 12:17:14 -0500
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (66.2ms)
+  Rendered recipes/new.html.erb within layouts/application (68.5ms)
+Completed 200 OK in 130ms (Views: 121.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2018-10-04 12:17:41 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CmIXafTiMiSZ9tdY6WH28s7UxNlycXRAsNW9dNwUnsjAUzSeyiSdkYJAVmiUETUi+c54O1crvmxbAU8MbyLa1A==", "recipe"=>{"image"=>#<ActionDispatch::Http::UploadedFile:0x00007fa4135e4818 @tempfile=#<Tempfile:/var/folders/tv/kc07j7lj6pl5_lyd_cr1r5x40000gn/T/RackMultipart20181004-49633-1y51a28.png>, @original_filename="Screen Shot 2018-09-19 at 9.27.45 AM.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"recipe[image]\"; filename=\"Screen Shot 2018-09-19 at 9.27.45 AM.png\"\r\nContent-Type: image/png\r\n">, "title"=>"asdf", "description"=>"add", "ingredients_attributes"=>{"0"=>{"content"=>"asdf"}}, "steps_attributes"=>{"0"=>{"direction"=>"ads"}}}, "commit"=>"Create Recipe"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:30
+  [1m[36mRecipe Create (0.8ms)[0m  [1m[32mINSERT INTO "recipes" ("title", "description", "created_at", "updated_at", "image") VALUES (?, ?, ?, ?, ?)[0m  [["title", "asdf"], ["description", "add"], ["created_at", "2018-10-04 17:17:41.031733"], ["updated_at", "2018-10-04 17:17:41.031733"], ["image", "Screen_Shot_2018-09-19_at_9.27.45_AM.png"]]
+  ↳ app/controllers/recipes_controller.rb:30
+  [1m[36mIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredients" ("content", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "asdf"], ["recipe_id", 1], ["created_at", "2018-10-04 17:17:41.033880"], ["updated_at", "2018-10-04 17:17:41.033880"]]
+  ↳ app/controllers/recipes_controller.rb:30
+  [1m[36mStep Create (5.1ms)[0m  [1m[32mINSERT INTO "steps" ("direction", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["direction", "ads"], ["recipe_id", 1], ["created_at", "2018-10-04 17:17:41.035753"], ["updated_at", "2018-10-04 17:17:41.035753"]]
+  ↳ app/controllers/recipes_controller.rb:30
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:30
+Redirected to http://localhost:3000/recipes/1
+Completed 302 Found in 27ms (ActiveRecord: 7.6ms)
+
+
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-04 12:17:41 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:67
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:18
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:26
+  Rendered recipes/show.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 62ms (Views: 55.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2018-10-04 12:17:43 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 59ms (Views: 56.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-04 12:17:46 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:67
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:18
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:26
+  Rendered recipes/show.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 60ms (Views: 54.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:17:47 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 45ms (Views: 42.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:21:45 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 1306ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'popper' with type 'application/javascript'
+Checked in these paths: 
+  /Users/chrislam/Desktop/new-recipe/app/assets/config
+  /Users/chrislam/Desktop/new-recipe/app/assets/images
+  /Users/chrislam/Desktop/new-recipe/app/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/app/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/nested_form_fields-0.8.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/jquery-rails-4.3.3/vendor/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actioncable-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/activestorage-5.2.1/app/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actionview-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/node_modules
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-sass-3.3.7/assets/fonts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-sass-3.3.7/assets/images):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  
+app/assets/javascripts/application.js:14
+app/views/layouts/application.html.erb:9:in `_app_views_layouts_application_html_erb__4052988879811389772_70171353113500'
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:22:00 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (12.4ms)
+Completed 500 Internal Server Error in 2583ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined not callable):
+     5:     <%= csrf_meta_tags %>
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+  
+(execjs):1
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__490555991776611182_70189276619360'
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:23:17 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (11.3ms)
+Completed 500 Internal Server Error in 1661ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined not callable):
+     5:     <%= csrf_meta_tags %>
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+  
+(execjs):1
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___389258581135961316_70142635916820'
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:23:51 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (11.0ms)
+Completed 500 Internal Server Error in 253ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sprockets.
+Load paths:
+  /Users/chrislam/Desktop/new-recipe/app/assets/config
+  /Users/chrislam/Desktop/new-recipe/app/assets/images
+  /Users/chrislam/Desktop/new-recipe/app/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/app/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/nested_form_fields-0.8.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/jquery-rails-4.3.3/vendor/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actioncable-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/activestorage-5.2.1/app/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actionview-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/node_modules
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/popper_js-1.14.3/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/stylesheets):
+     5:     <%= csrf_meta_tags %>
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+  
+app/assets/stylesheets/application.scss:1
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___3250636758716121191_70154200316220'
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:24:04 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (12.5ms)
+Completed 500 Internal Server Error in 262ms (ActiveRecord: 1.1ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sprockets.
+Load paths:
+  /Users/chrislam/Desktop/new-recipe/app/assets/config
+  /Users/chrislam/Desktop/new-recipe/app/assets/images
+  /Users/chrislam/Desktop/new-recipe/app/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/app/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/nested_form_fields-0.8.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/jquery-rails-4.3.3/vendor/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actioncable-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/activestorage-5.2.1/app/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actionview-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/node_modules
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/popper_js-1.14.3/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/stylesheets):
+     5:     <%= csrf_meta_tags %>
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+  
+app/assets/stylesheets/application.scss:1
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__285279823883923078_70323358843980'
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:24:08 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sprockets.
+Load paths:
+  /Users/chrislam/Desktop/new-recipe/app/assets/config
+  /Users/chrislam/Desktop/new-recipe/app/assets/images
+  /Users/chrislam/Desktop/new-recipe/app/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/app/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/nested_form_fields-0.8.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/jquery-rails-4.3.3/vendor/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actioncable-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/activestorage-5.2.1/app/assets/javascripts
+  /Users/chrislam/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/actionview-5.2.1/lib/assets/compiled
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /Users/chrislam/Desktop/new-recipe/node_modules
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/popper_js-1.14.3/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/stylesheets
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/javascripts
+  /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/bootstrap-4.1.3/assets/stylesheets):
+     5:     <%= csrf_meta_tags %>
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+  
+app/assets/stylesheets/application.scss:1
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__285279823883923078_70323363886020'
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:24:50 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 383ms (Views: 364.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-04 12:40:49 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (15.7ms)
+Completed 200 OK in 584ms (Views: 559.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/recipes/1/edit" for 127.0.0.1 at 2018-10-04 12:40:52 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:67
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/nested_form_fields-0.8.2/lib/nested_form_fields.rb:72
+  [1m[36mStep Load (0.7ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.5.1/gems/nested_form_fields-0.8.2/lib/nested_form_fields.rb:72
+  Rendered recipes/_form.html.erb (76.4ms)
+  Rendered recipes/edit.html.erb within layouts/application (79.3ms)
+Completed 200 OK in 121ms (Views: 114.8ms | ActiveRecord: 2.3ms)
+
+
+Started PATCH "/recipes/1" for 127.0.0.1 at 2018-10-04 12:40:57 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"St4VhRMeHW0DdxV+MqhfT3T8zF+v4w7qRI3xwLRKDImK3xxaFuNkOcygms77sxozTbHOQHXyEtEANKFlFBsVSg==", "recipe"=>{"remove_image"=>"0", "title"=>"asdf", "description"=>"add", "ingredients_attributes"=>{"0"=>{"content"=>"asdf", "id"=>"1"}, "1"=>{"content"=>"asdf"}, "2"=>{"content"=>"add"}}, "steps_attributes"=>{"0"=>{"direction"=>"ads", "id"=>"1"}}}, "commit"=>"Update Recipe", "id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:67
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:44
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" = ?[0m  [["recipe_id", 1], ["id", 1]]
+  ↳ app/controllers/recipes_controller.rb:44
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" = ?[0m  [["recipe_id", 1], ["id", 1]]
+  ↳ app/controllers/recipes_controller.rb:44
+  [1m[36mRecipe Update (0.6ms)[0m  [1m[33mUPDATE "recipes" SET "image" = ?, "updated_at" = ? WHERE "recipes"."id" = ?[0m  [["image", "Screen_Shot_2018-09-19_at_9.27.45_AM.png"], ["updated_at", "2018-10-04 17:40:57.530483"], ["id", 1]]
+  ↳ app/controllers/recipes_controller.rb:44
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("content", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "asdf"], ["recipe_id", 1], ["created_at", "2018-10-04 17:40:57.533131"], ["updated_at", "2018-10-04 17:40:57.533131"]]
+  ↳ app/controllers/recipes_controller.rb:44
+  [1m[36mIngredient Create (0.1ms)[0m  [1m[32mINSERT INTO "ingredients" ("content", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "add"], ["recipe_id", 1], ["created_at", "2018-10-04 17:40:57.534462"], ["updated_at", "2018-10-04 17:40:57.534462"]]
+  ↳ app/controllers/recipes_controller.rb:44
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:44
+Redirected to http://localhost:3000/recipes/1
+Completed 302 Found in 13ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-04 12:40:57 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:67
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:18
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:26
+  Rendered recipes/show.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 49ms (Views: 45.6ms | ActiveRecord: 0.4ms)
+
+
